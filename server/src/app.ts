@@ -8,7 +8,7 @@ import { blogRouter } from "./routes/blogRoutes";
 
 // Initializing app
 const app = express();
-const PUBLIC = path.join(__dirname, "../client/build");
+const PUBLIC = path.join(__dirname, "../../client/build");
 
 // Middleware
 app.use(
