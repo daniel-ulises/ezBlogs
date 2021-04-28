@@ -7,8 +7,10 @@ import { NotLogged } from "./NotLogged";
 
 export const NavBar: React.FC<UserProps> = ({ user, setUser }) => {
   const checkUser = async () => {
-    const getUser = await axios.get("http://localhost:3100/auth");
-    setUser!(getUser.data);
+    await axios
+      .get("/auth")
+      .then(res => setUser!(res.data))
+      .catch(err => err);
   };
 
   useEffect(() => {

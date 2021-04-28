@@ -7,16 +7,10 @@ export type BlogFormInput = {
   preventDefault: () => void;
   target: {
     title: { value: string };
-    snippet: { value: string };
+    description: { value: string };
     content: { value: string | number };
     reset: () => void;
   };
-};
-
-type messageProps = {
-  message: string;
-
-  post: [number];
 };
 
 export const AddBlog: React.FC<UserProps> = ({ user }) => {
@@ -24,9 +18,9 @@ export const AddBlog: React.FC<UserProps> = ({ user }) => {
   const handleSubmit = async (e: BlogFormInput & FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const req = await axios.post("http://localhost:3100/post/blog", {
+    const req = await axios.post("/post/blog", {
       title: e.target.title.value,
-      snippet: e.target.snippet.value,
+      description: e.target.description.value,
       author: user?.username,
       content: e.target.content.value,
     });
@@ -35,23 +29,28 @@ export const AddBlog: React.FC<UserProps> = ({ user }) => {
     e.target.reset();
   };
 
-  const messageDisplay = message.map((msg: messageProps) => {
-    <li className="submit-message">
-      {msg.message}, check it out <Link to={`/blog/${msg.post[0]}`}>here!</Link>
-    </li>;
-  });
-
   return (
     <div className="create-blog">
       <div className="addblog-navigation">
         <ul>
           <li>
-            <Link to="/">HOME</Link>
+            <Link to="/" onClick={() => setMessage()}>
+              HOME
+            </Link>
           </li>
           <li>
-            <Link to="/blogs">BLOGS</Link>
+            <Link to="/blogs" onClick={() => setMessage()}>
+              BLOGS
+            </Link>
           </li>
-          {message.length > 0 ? messageDisplay : null}
+          {message.id ? (
+            <li className="submit-message">
+              Post created successfully, check it out{" "}
+              <Link onClick={() => setMessage()} to={`/blog/${message.id}`}>
+                here!
+              </Link>
+            </li>
+          ) : null}
         </ul>
       </div>
       <form className="blog-form" onSubmit={handleSubmit}>
@@ -61,9 +60,9 @@ export const AddBlog: React.FC<UserProps> = ({ user }) => {
             <input type="text" name="title" id="title" />
           </div>
           <div>
-            <label htmlFor="snippet">Snippet</label>
+            <label htmlFor="description">Snippet</label>
             <span className="snippet">Give a short description of the blog itself</span>
-            <input type="text" name="snippet" id="snippet" />
+            <input type="text" name="description" id="description" />
           </div>
         </div>
         <div className="text-area-container">

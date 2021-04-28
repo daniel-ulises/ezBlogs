@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' ./src/index.ts",
-    "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -n ezBlog --f ./src/ormconfig"
+    "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -n ezBlog"
   },
   "dependencies": {
     "argon2": "^0.27.2",

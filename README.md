@@ -29,6 +29,7 @@ If you are a back end developer and would also like to contribute, you are more 
 - [x] Login / Signup
 - [x] Post / Get blog entries
 - [x] <span style="color: #cc3c10; text-decoration: underline">**Implement persistent sessions**</span> _(Currently logs you out on refresh)_
+- [ ] Implement protected sites with `react-router-dom`
 - [ ] Sanitize forms & display form errors
 - [ ] Improve React/Typescript code
 - [ ] Restructure files and folders
@@ -49,8 +50,8 @@ You can acces a live demo [demo](https://blog.daniel-ulises.me)
 
 If you want to test it without registering, you can use this user:
 
-**username:** test  
-**password:** Test1234
+**username:** test@mail.com  
+**password:** test123
 
 ## Note
 

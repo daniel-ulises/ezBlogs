@@ -20,7 +20,7 @@ export const Login: React.FC<UserProps> = ({ user, setUser }) => {
     const password = e.target.password.value;
 
     const req = await axios.post(
-      "http://localhost:3100/signin",
+      "/signin",
       { email, password },
       { withCredentials: true }
     );

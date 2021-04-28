@@ -17,7 +17,7 @@ export interface UserProps {
     username: string;
     email: string;
   };
-  setUser?: React.Dispatch<React.SetStateAction<undefined>>;
+  setUser?: React.Dispatch<React.SetStateAction<undefined> & void>;
 }
 
 export const App: React.FC = () => {

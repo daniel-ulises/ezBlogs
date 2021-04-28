@@ -5,17 +5,18 @@ import axios from "axios";
 import { UserProps } from "src/App";
 
 type BlogProps = {
-  blog_id: number;
-  blog_title: string;
-  blog_author: string;
-  blog_snippet: string;
+  id: number;
+  title: string;
+  author: string;
+  description: string;
 };
 
 export const Blogs: React.FC<UserProps> = ({ user }) => {
   const [blogs, setBlogs] = useState([]);
 
   const fetchBlogs = async () => {
-    const req = await axios.get("http://localhost:3100/get/blogs");
+    const req = await axios.get("/get/blogs");
+    console.log(req.data);
     setBlogs(req.data);
   };
 
@@ -27,25 +28,25 @@ export const Blogs: React.FC<UserProps> = ({ user }) => {
     return (
       <>
         {blogs ? (
-          <article key={blog.blog_id}>
+          <article key={blog.id}>
             <Link
               to={{
-                pathname: `/blog/${blog.blog_id}`,
-                state: blog.blog_id,
+                pathname: `/blog/${blog.id}`,
+                state: blog.id,
               }}
             >
-              <h1 className="blog-title">{blog.blog_title}</h1>
+              <h1 className="blog-title">{blog.title}</h1>
             </Link>
 
             <section>
-              <p className="blog-snippet">{blog.blog_snippet}</p>
+              <p className="blog-snippet">{blog.description}</p>
               <div className="section-footer">
                 <div className="blog-options">
                   <span>comment</span>
                   <span>share</span>
                   <span>edit </span>
                 </div>
-                <span className="blog-author">{blog.blog_author}</span>
+                <span className="blog-author">{blog.author}</span>
               </div>
             </section>
           </article>

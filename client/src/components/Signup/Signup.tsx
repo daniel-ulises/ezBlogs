@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { FormEvent } from "react";
 import { Redirect } from "react-router-dom";
-import { UserProps } from "../..//App";
+import { UserProps } from "../../App";
 import { SubmitForm } from "../Login/Login";
 
 export const Signup: React.FC<UserProps> = ({ user, setUser }) => {
@@ -11,7 +11,7 @@ export const Signup: React.FC<UserProps> = ({ user, setUser }) => {
     const username = e?.target?.username?.value;
     const password = e.target.password.value;
 
-    const req = await axios.post("http://localhost:3100/signup", {
+    const req = await axios.post("/signup", {
       email,
       username,
       password,

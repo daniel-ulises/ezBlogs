@@ -5,7 +5,7 @@ import { UserProps } from "src/App";
 
 export const Logged: React.FC<UserProps> = ({ user }) => {
   const handleLogout = () => {
-    axios.get("http://localhost:3100/logout", { withCredentials: true });
+    axios.get("/logout", { withCredentials: true });
   };
 
   return (
