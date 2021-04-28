@@ -25,7 +25,7 @@ export const App: React.FC = () => {
 
   const checkUser = async () => {
     try {
-      const getUser = await axios.get("http://localhost:3100/auth", {
+      const getUser = await axios.get("/auth", {
         withCredentials: true,
       });
       setUser(getUser.data);

@@ -16,7 +16,6 @@ export const Blogs: React.FC<UserProps> = ({ user }) => {
 
   const fetchBlogs = async () => {
     const req = await axios.get("/get/blogs");
-    console.log(req.data);
     setBlogs(req.data);
   };
 
