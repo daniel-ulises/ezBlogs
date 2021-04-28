@@ -50,8 +50,8 @@ You can acces a live demo [demo](https://blog.daniel-ulises.me)
 
 If you want to test it without registering, you can use this user:
 
-**username:** test@mail.com  
-**password:** test123
+**username:** tester@mail.com
+**password:** testing123
 
 ## Note
 
