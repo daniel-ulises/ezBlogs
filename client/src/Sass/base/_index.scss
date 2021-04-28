@@ -1,0 +1,18 @@
+@forward "./reset";
+@forward "./typography";
+@use "../abstracts/colors" as *;
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: Poppins;
+	background-color: lighten($primary-gray, 65%);
+	margin: 0;
+	line-height: 1.5;
+}
+
+body.dark {
+	background-color: darken($primary-gray, 20%);
+}

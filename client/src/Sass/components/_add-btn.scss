@@ -1,0 +1,40 @@
+@use "../abstracts/index" as *;
+
+.add-blog-container {
+	@include box-shadow();
+	position: absolute;
+	bottom: 4rem;
+	right: 1rem;
+	height: 2rem;
+	width: 2rem;
+	background-color: darken($primary-blue, 10%);
+	border-radius: 100%;
+	cursor: pointer;
+	@include flex(row, center, center);
+
+	&:hover {
+		background-color: lighten($primary-gray, 70%);
+		.plus-sign-1 {
+			background-color: $primary-blue;
+			transform: rotate(90deg);
+		}
+
+		.plus-sign-2 {
+			background-color: $primary-blue;
+			transform: rotate(180deg);
+		}
+	}
+	.plus-sign-1 {
+		position: absolute;
+		width: 0.25rem;
+		height: 1rem;
+		background-color: lighten($primary-gray, 60%);
+		border-radius: 0.1rem;
+		transition: all 0.3s;
+	}
+
+	.plus-sign-2 {
+		@extend .plus-sign-1;
+		transform: rotate(90deg);
+	}
+}

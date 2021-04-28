@@ -1,0 +1,53 @@
+@use "../abstracts/index" as *;
+
+nav {
+	@include flex(row, space-between, center);
+	@include box-shadow();
+	background-color: lighten($primary-gray, 70%);
+	margin-bottom: 1rem;
+	width: 100%;
+
+	h1 {
+		font-size: x-large;
+		padding: 0 1rem;
+
+		span {
+			transition: color 0.3s;
+
+			&:hover {
+				color: $primary-gray;
+			}
+		}
+	}
+
+	ul {
+		list-style: none;
+		@include flex(row, space-between, center);
+
+		li {
+			margin: 0 0.5rem;
+		}
+	}
+
+	.nav-name-ez {
+		font-style: italic;
+		font-weight: normal;
+	}
+
+	.nav-name-blogs {
+		color: $primary-blue;
+	}
+
+	svg {
+		stroke: lighten($primary-gray, 10%);
+		height: 2.2rem;
+		border-bottom: 0.15rem solid transparent;
+		border-radius: 1rem;
+		padding: 0.3rem;
+		cursor: pointer;
+
+		&:hover {
+			border-color: $primary-blue;
+		}
+	}
+}

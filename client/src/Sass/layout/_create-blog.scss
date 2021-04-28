@@ -1,0 +1,28 @@
+@use "../abstracts/index" as *;
+
+.create-blog {
+	background-color: lighten($primary-gray, 70%);
+	height: 100%;
+	width: 100%;
+
+	ul {
+		list-style: none;
+		@include flex(row, flex-start, center);
+		width: 90%;
+
+		li {
+			padding: 0.5rem 1rem;
+		}
+
+		li.submit-message {
+			color: lighten($primary-gray, 60%);
+			background-color: lighten($primary-green, 20%);
+			justify-self: flex-end;
+			margin-left: auto;
+			padding: inherit 3rem;
+			text-align: center;
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+	}
+}

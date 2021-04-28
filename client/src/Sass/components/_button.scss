@@ -1,0 +1,16 @@
+@use "../abstracts/index" as *;
+
+button {
+	padding: 0.5rem 2rem;
+	margin-top: 1rem;
+	color: lighten($primary-gray, 60%);
+	background-color: $primary-blue;
+	border-radius: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		background-color: darken($primary-blue, 20%);
+	}
+}

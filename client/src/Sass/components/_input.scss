@@ -1,0 +1,14 @@
+@use "../abstracts/index" as *;
+
+input {
+	border: 0.1rem solid transparent;
+	border-bottom: 0.1rem solid $primary-blue;
+	padding: 0.2rem 0.5rem;
+	width: 100%;
+	transition: border 0.3s;
+
+	&:focus {
+		border-radius: 0.3rem;
+		border: 0.1rem solid $primary-blue;
+	}
+}

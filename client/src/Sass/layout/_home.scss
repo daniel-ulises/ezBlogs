@@ -1,0 +1,66 @@
+@use "../abstracts/index" as *;
+
+.home-container {
+	@include box-shadow();
+	background-color: lighten($primary-gray, 70%);
+	margin: auto;
+	width: 45rem;
+	max-width: 95%;
+
+	.home-content {
+		padding: 2rem;
+
+		h2 {
+			color: lighten($primary-gray, 20%);
+		}
+
+		p {
+			padding-left: 1rem;
+
+			& ~ h2 {
+				margin-top: 4rem;
+			}
+		}
+
+		a {
+			position: relative;
+
+			&::before {
+				@include l-underline();
+			}
+
+			&:hover::before {
+				@include l-underline-hover(3rem);
+			}
+		}
+
+		.emphasis {
+			position: relative;
+			z-index: 1;
+
+			&::after {
+				background-color: lighten($primary-blue, 20%);
+				position: absolute;
+				content: "";
+				height: 0.2rem;
+				width: 70%;
+				left: 0;
+				bottom: 0;
+				z-index: -1;
+				transform: skewY(-2deg);
+			}
+
+			&::before {
+				opacity: 0.3;
+				@extend ::after;
+				bottom: 0.3rem;
+				background-color: $primary-blue;
+			}
+		}
+	}
+
+	.home-list {
+		list-style: none;
+		font-size: 0.9rem;
+	}
+}

@@ -1,0 +1,9 @@
+@use "./base/index" as *;
+@use "./layout/index" as *;
+@use "./components/index" as *;
+@use "./abstracts/mixins" as *;
+
+#root {
+	@include flex(column, inherit, inherit);
+	height: 100vh;
+}

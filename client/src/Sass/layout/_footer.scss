@@ -1,0 +1,18 @@
+@use "../abstracts/index" as *;
+
+footer {
+	@include flex(column, space-between, center);
+	background-color: lighten($primary-gray, 70%);
+	margin-top: 1rem;
+
+	a {
+		position: relative;
+
+		&::after {
+			@include l-underline();
+		}
+		&:hover:after {
+			@include l-underline-hover(5rem);
+		}
+	}
+}

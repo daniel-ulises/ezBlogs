@@ -1,0 +1,58 @@
+@use "../abstracts/index" as *;
+
+article {
+	@include flex(column, space-between, normal);
+	@include box-shadow();
+	margin: 1rem;
+	padding: 2rem 1rem;
+	background-color: lighten($primary-gray, 70%);
+
+	.blog-title {
+		color: lighten($primary-gray, 10%);
+		width: fit-content;
+		padding: 0.5rem 1rem;
+		display: inline;
+		position: relative;
+
+		&::after {
+			@include l-underline();
+		}
+
+		&:hover::after {
+			@include l-underline-hover(6rem);
+		}
+	}
+}
+
+section {
+	@include flex(column, space-evenly, baseline);
+
+	.blog-snippet {
+		opacity: 0.3;
+		font-style: italic;
+	}
+
+	.blog-content {
+		padding: 1rem 2rem;
+	}
+
+	.section-footer {
+		@include flex(row, space-between, center);
+		width: 100%;
+
+		.blog-options {
+			opacity: 0.1;
+			span {
+				padding: 0.5rem;
+			}
+		}
+	}
+
+	.blog-author {
+		align-self: flex-end;
+		padding: 0.3rem 1rem;
+		background-color: $primary-blue;
+		color: lighten($primary-gray, 60%);
+		border-radius: 1rem;
+	}
+}

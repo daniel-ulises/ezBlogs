@@ -1,0 +1,48 @@
+@use "../abstracts/index" as *;
+
+@font-face {
+	font-family: Poppins;
+	src: url("./assets/fonts/Poppins-Regular.otf");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Poppins;
+	src: url("./assets/fonts/Poppins-Bold.otf");
+	font-weight: bold;
+	font-style: normal;
+}
+
+a {
+	font-weight: bold;
+	text-decoration: none;
+	color: lighten($primary-gray, 10%);
+	transition: all 0.3s;
+	width: fit-content;
+	cursor: pointer;
+
+	&:hover {
+		color: $primary-blue;
+		fill: darken($primary-blue, 15%);
+	}
+
+	&.btn {
+		padding: 0.5rem 1rem;
+		background-color: $primary-blue;
+		color: lighten($primary-gray, 60%);
+		border-radius: 1rem;
+
+		&:hover {
+			background: darken($primary-blue, 20%);
+		}
+	}
+
+	&.btn-hover {
+		padding: 0.5rem 1rem;
+
+		&:hover {
+			@extend .btn;
+		}
+	}
+}
