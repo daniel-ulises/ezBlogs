@@ -33,3 +33,25 @@ export const getBlog = async (req: Request, res: Response) => {
     res.json(post);
   } catch (err) {}
 };
+
+export const deleteBlog = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const post = await Posts.delete(id);
+
+    if (post.affected !== 0 || undefined) {
+      console.log(post);
+      res.status(200).json({
+        message: "Post found and deleted successfully.",
+      });
+    } else {
+      res.json({
+        message: "Post not foud, nothing deleted.",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+};

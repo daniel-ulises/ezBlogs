@@ -30,7 +30,7 @@ If you are a back end developer and would also like to contribute, you are more 
 - [x] Post / Get blog entries
 - [x] <span style="color: #cc3c10; text-decoration: underline">**Implement persistent sessions**</span> _(Currently logs you out on refresh)_
 - [ ] Implement protected sites with `react-router-dom`
-- [ ] Sanitize forms & display form errors
+- [x] Sanitize forms & display form errors
 - [ ] Improve React/Typescript code
 - [ ] Restructure files and folders
 - [ ] Implement Light/Dark mode

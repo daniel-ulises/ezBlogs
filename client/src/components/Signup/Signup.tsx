@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { FormEvent } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { UserProps } from "../../App";
 import { SubmitForm } from "../Login/Login";
 
@@ -22,18 +22,31 @@ export const Signup: React.FC<UserProps> = ({ user, setUser }) => {
   return (
     <div className="form-container">
       <form onSubmit={handleSignup} className="user-form">
+        <div className="error-msg" style={{ height: "1rem" }}></div>
         <div>
+          <span className="form-error">{user?.message ? user?.message.email : null}</span>
           <label htmlFor="email">EMAIL</label>
           <input type="email" name="email" id="email" />
         </div>
         <div>
+          <span className="form-error">
+            {user?.message ? user.message.username : null}
+          </span>
           <label htmlFor="username">USERNAME</label>
           <input type="text" name="username" id="username" />
         </div>
 
         <div>
+          <span className="form-error">
+            {user?.message ? user.message.password : null}
+          </span>
           <label htmlFor="password">PASSWORD</label>
           <input type="password" name="password" id="password" />
+        </div>
+        <div className="register-login">
+          <span>
+            Already registered? Sign in <Link to="/login">here</Link>
+          </span>
         </div>
         <button name="button">SING UP</button>
       </form>

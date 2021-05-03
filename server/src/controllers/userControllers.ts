@@ -13,7 +13,6 @@ const createToken = (id: number) => {
 
 export const signup = async (req: Request, res: Response) => {
   try {
-    console.log(jwt);
     const { email, username, password } = req.body;
     const hashedPassword = await argon2.hash(password);
     const user = new Users();
@@ -28,40 +27,44 @@ export const signup = async (req: Request, res: Response) => {
 
     // Check if there are any errors. If yes, send them back.
     if (errors.length > 0) {
-      res.status(400).json({
-        email: errors[0].constraints?.isEmail,
-        password: errors[0].constraints?.minLength,
+      console.log(errors);
+      res.json({
+        message: {
+          email: errors[0].constraints?.isEmail,
+          password: errors[0].constraints?.minLength,
+        },
       });
       return;
+    } else {
+      // Change the password to the hashed one after validation
+      user.password = hashedPassword;
+
+      // Save the created user into the database
+      await user.save();
+
+      // Create token
+      const token = createToken(user.id);
+
+      // Create cookie & send the username back as the response for the front end.
+      res.cookie(COOKIE_NAME, token, {
+        httpOnly: true,
+        maxAge: 60 * 60 * 24 * 3 * 1000, // 3 days in milliseconds
+      });
+
+      res.status(201).json({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+      });
     }
-
-    // Change the password to the hashed one after validation
-    user.password = hashedPassword;
-
-    // Save the created user into the database
-    await user.save();
-
-    // Create token
-    const token = createToken(user.id);
-
-    // Create cookie & send the username back as the response for the front end.
-    res.cookie(COOKIE_NAME, token, {
-      httpOnly: true,
-      maxAge: 60 * 60 * 24 * 3 * 1000, // 3 days in milliseconds
-    });
-
-    res.status(201).json({
-      id: user.id,
-      username: user.username,
-      email: user.email,
-    });
   } catch (err) {
     //   Check if email or username already exist, then send response.
     if (err.code === "23505" && err.detail.includes("email")) {
-      res.status(400).json("Email already exists");
+      res.json({ message: { email: "Email already exists" } });
     } else if (err.code === "23505" && err.detail.includes("username")) {
-      res.status(400).json("Username already exists");
+      res.json({ message: { username: "Username already exists" } });
     }
+    console.log(err);
   }
 };
 
@@ -71,14 +74,14 @@ export const signin = async (req: Request, res: Response) => {
     const user = await Users.findOne({ email });
 
     if (!user) {
-      res.status(400).json("email does not exist");
+      res.json({ message: { email: "email does not exist" } });
       return;
     }
 
     const valid = await argon2.verify(user!.password, password);
 
     if (!valid) {
-      res.status(400).json("Password does not match");
+      res.json({ message: { password: "Password does not match" } });
       return;
     }
 

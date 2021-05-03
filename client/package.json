@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "yarn sass:build && react-scripts build",
     "sass:watch": "sass --watch --no-source-map ./src/Sass/main.scss:./src/app.min.css",
     "sass:build": "sass --no-source-map --style=compressed ./src/Sass/main.scss:./src/app.min.css && postcss ./src/app.min.css --replace --use autoprefixer"
   },

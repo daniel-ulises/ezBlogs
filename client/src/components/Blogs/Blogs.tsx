@@ -23,6 +23,12 @@ export const Blogs: React.FC<UserProps> = ({ user }) => {
     fetchBlogs();
   }, []);
 
+  const handleDelete = async (id: number) => {
+    await axios.delete(`/delete/blog/${id}`);
+    const filtered = blogs.filter((blog: BlogProps) => id != blog.id);
+    setBlogs!(filtered);
+  };
+
   const blogsDisplay = blogs.map((blog: BlogProps) => {
     return (
       <>
@@ -43,7 +49,10 @@ export const Blogs: React.FC<UserProps> = ({ user }) => {
                 <div className="blog-options">
                   <span>comment</span>
                   <span>share</span>
-                  <span>edit </span>
+                  {user?.username === blog.author ? <span>edit</span> : null}
+                  {user?.username === blog.author ? (
+                    <span onClick={() => handleDelete(blog.id)}>delete</span>
+                  ) : null}
                 </div>
                 <span className="blog-author">{blog.author}</span>
               </div>

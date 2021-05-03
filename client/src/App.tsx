@@ -16,6 +16,11 @@ export interface UserProps {
     id: number;
     username: string;
     email: string;
+    message: {
+      username: string;
+      email: string;
+      password: string;
+    };
   };
   setUser?: React.Dispatch<React.SetStateAction<undefined> & void>;
 }
@@ -29,6 +34,7 @@ export const App: React.FC = () => {
         withCredentials: true,
       });
       setUser(getUser.data);
+      console.log(getUser.data);
     } catch (err) {
       return;
     }
